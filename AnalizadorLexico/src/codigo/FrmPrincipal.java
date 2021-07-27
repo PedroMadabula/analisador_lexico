@@ -107,7 +107,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             while (true) {
                 Tokens tokens = lexer.yylex();
                 if (tokens == null) {
-                    resultado += "FIM";
+                    resultado += "Fim da analise";
                     txtResultado.setText(resultado);
                     return;
                 }

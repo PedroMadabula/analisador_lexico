@@ -10,10 +10,18 @@ white=[ ,\t,\r,\n]+
     public String lexeme;
 %}
 %%
-int |
-if |
-else |
-while {lexeme=yytext(); return Reservadas;}
+int | double | float | boolean | String | long |
+short | char | byte |
+if | instanceof | return | switch | default | 
+else | continue | case | do | break |
+while |
+private | protected | public | 
+abastract | class | extends | final | implements |
+interface | native | new | static | strictfp |
+synchronized | transient | volatile | assert |
+catch | finally | throw | throws | try | import | 
+package | super | this | void
+{lexeme=yytext(); return Reservadas;}
 {white} {/*Ignore*/}
 "//".* {/*Ignore*/}
 "=" {return Igual;}
