@@ -5,7 +5,7 @@ import static codigo.Tokens.*;
 %type Tokens
 L=[a-zA-Z_]+
 D=[0-9]+
-espacio=[ ,\t,\r,\n]+
+white=[ ,\t,\r,\n]+
 %{
     public String lexeme;
 %}
@@ -14,13 +14,13 @@ int |
 if |
 else |
 while {lexeme=yytext(); return Reservadas;}
-{espacio} {/*Ignore*/}
+{white} {/*Ignore*/}
 "//".* {/*Ignore*/}
 "=" {return Igual;}
-"+" {return Suma;}
-"-" {return Resta;}
-"*" {return Multiplicacion;}
-"/" {return Division;}
+"+" {return Soma;}
+"-" {return Subtracao;}
+"*" {return Multiplicacao;}
+"/" {return Divisao;}
 {L}({L}|{D})* {lexeme=yytext(); return Identificador;}
 ("(-"{D}+")")|{D}+ {lexeme=yytext(); return Numero;}
- . {return ERROR;}
+ . {return ERRO;}

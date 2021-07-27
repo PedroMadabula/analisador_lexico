@@ -107,16 +107,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
             while (true) {
                 Tokens tokens = lexer.yylex();
                 if (tokens == null) {
-                    resultado += "FIN";
+                    resultado += "FIM";
                     txtResultado.setText(resultado);
                     return;
                 }
                 switch (tokens) {
-                    case ERROR:
-                        resultado += "Simbolo no definido\n";
+                    case ERRO:
+                        resultado += "Símbolo não definido\n";
                         break;
                     case Identificador: case Numero: case Reservadas:
-                        resultado += lexer.lexeme + ": Es un " + tokens + "\n";
+                        resultado += lexer.lexeme + ": É um/(a) " + tokens + "\n";
                         break;
                     default:
                         resultado += "Token: " + tokens + "\n";

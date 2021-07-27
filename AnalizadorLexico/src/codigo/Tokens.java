@@ -12,11 +12,11 @@ package codigo;
 public enum Tokens {
     Reservadas,
     Igual,
-    Suma,
-    Resta,
-    Multiplicacion,
-    Division,
+    Soma,
+    Subtracao,
+    Multiplicacao,
+    Divisao,
     Identificador,
     Numero,
-    ERROR
+    ERRO
 }
