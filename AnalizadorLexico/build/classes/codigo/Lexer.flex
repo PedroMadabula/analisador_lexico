@@ -16,7 +16,7 @@ if | instanceof | return | switch | default |
 else | continue | case | do | break |
 while |
 private | protected | public | 
-abastract | class | extends | final | implements |
+abstract | class | extends | final | implements |
 interface | native | new | static | strictfp |
 synchronized | transient | volatile | assert |
 catch | finally | throw | throws | try | import | 

@@ -7,10 +7,6 @@ package codigo;
 
 import java.io.File;
 
-/**
- *
- * @author Charly Ponce
- */
 public class Principal {
     public static void main(String[] args) {
         String ruta = "E:/GitHub Projects/analisador_lexico/AnalizadorLexico/src/codigo/Lexer.flex";
