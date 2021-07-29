@@ -24,11 +24,11 @@ package | super | this | void
 {lexeme=yytext(); return Reservadas;}
 {white} {/*Ignore*/}
 "//".* {/*Ignore*/}
-"=" {return Igual;}
-"+" {return Soma;}
-"-" {return Subtracao;}
-"*" {return Multiplicacao;}
-"/" {return Divisao;}
+"=" {lexeme=yytext(); return Igual;}
+"+" {lexeme=yytext(); return Soma;}
+"-" {lexeme=yytext(); return Subtracao;}
+"*" {lexeme=yytext(); return Multiplicacao;}
+"/" {lexeme=yytext(); return Divisao;}
 {L}({L}|{D})* {lexeme=yytext(); return Identificador;}
 ("(-"{D}+")")|{D}+ {lexeme=yytext(); return Numero;}
  . {return ERRO;}

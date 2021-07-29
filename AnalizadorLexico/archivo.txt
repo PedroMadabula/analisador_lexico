@@ -1,1 +1,8 @@
-/rr
+public Lutador(String nome,String nacionalidade, int idade,double instituicao,double altura,double categoria){
+	this.nome = nome;
+	this.nacionalidade = nacionalidade;
+	this.idade = idade;
+	this.instituicao = instituicao;
+	this.altura = altura;
+	this.categoria = categoria;
+		 
