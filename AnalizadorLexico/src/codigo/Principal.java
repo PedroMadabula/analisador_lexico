@@ -1,18 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package codigo;
 
 import java.io.File;
 
 public class Principal {
     public static void main(String[] args) {
-        String ruta = "E:/GitHub Projects/analisador_lexico/AnalizadorLexico/src/codigo/Lexer.flex";
-        generarLexer(ruta);
+        String lexer = "E:/GitHub Projects/analisador_lexico/AnalizadorLexico/src/codigo/Lexer.flex";
+        gerarLexer(lexer);
     }
-    public static void generarLexer(String ruta){
+    public static void gerarLexer(String ruta){
         File archivo = new File(ruta);
         JFlex.Main.generate(archivo);
     }

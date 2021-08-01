@@ -15,9 +15,9 @@ import java.io.Reader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class FrmPrincipal extends javax.swing.JFrame {
+public class AnaLex extends javax.swing.JFrame {
 
-    public FrmPrincipal() {
+    public AnaLex() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -90,10 +90,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel2)
                 .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAnalizar)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnAnalizar)
+                        .addComponent(jLabel1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
@@ -106,19 +107,25 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void btnAnalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalizarActionPerformed
         // TODO add your handling code here:
-        File archivo = new File("archivo.txt");
-        PrintWriter escribir;
+        String lines[]; int contLinha=0;
+        File arquivo = new File("codigo.txt");
+        PrintWriter escrever;
         try {
-            escribir = new PrintWriter(archivo);
-            escribir.print(txtEntrada.getText());
-            escribir.close();
+            escrever = new PrintWriter(arquivo);
+            escrever.print(txtEntrada.getText());
+            lines = txtEntrada.getText().split("\\n");
+            for(int i = 0; i < lines.length; i++) {
+                //escrever.print(lines[i]);
+                //escrever.print("\n");
+            }
+            escrever.close();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AnaLex.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         try {
-            Reader lector = new BufferedReader(new FileReader("archivo.txt"));
-            Lexer lexer = new Lexer(lector);
+            Reader leitor = new BufferedReader(new FileReader("codigo.txt"));
+            Lexer lexer = new Lexer(leitor);
             String resultado = "";
             while (true) {
                 Tokens tokens = lexer.yylex();
@@ -128,21 +135,25 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     return;
                 }
                 switch (tokens) {
+                    case Linha:
+                        contLinha++;
+                        //resultado += "Linha: " + contLinha;
+                        break;
                     case ERRO:
-                        resultado += "Símbolo não definido\n";
+                        resultado += "Linha: " + contLinha + "<Símbolo não definido>\n";
                         break;
                     case Identificador: case Numero: case Reservadas:
-                        resultado += "Lexema: "+ lexer.lexeme + "   É um/(a) " + tokens + "\n";
+                        resultado += "Linha: " + contLinha + ", < " + tokens + " >, " + lexer.lexeme + "\n";
                         break;
                     default:
-                        resultado += "Lexema: " + lexer.lexeme + "   É um/(a) " + tokens + "\n";
+                        resultado += "Linha: " + contLinha + ", < " + tokens + " >, " + lexer.lexeme + "\n";;
                         break;
                 }
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AnaLex.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AnaLex.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAnalizarActionPerformed
 
@@ -163,20 +174,23 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AnaLex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AnaLex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AnaLex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AnaLex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmPrincipal().setVisible(true);
+                new AnaLex().setVisible(true);
             }
         });
     }

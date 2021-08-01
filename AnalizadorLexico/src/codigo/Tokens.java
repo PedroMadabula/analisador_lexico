@@ -11,6 +11,7 @@ package codigo;
  */
 public enum Tokens {
     Reservadas,
+    Linha,
     Igual,
     Soma,
     Subtracao,

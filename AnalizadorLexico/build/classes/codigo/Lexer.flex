@@ -5,7 +5,7 @@ import static codigo.Tokens.*;
 %type Tokens
 L=[a-zA-Z_]+
 D=[0-9]+
-white=[ ,\t,\r,\n]+
+white=[ ,\t,\r]+
 %{
     public String lexeme;
 %}
@@ -24,6 +24,7 @@ package | super | this | void
 {lexeme=yytext(); return Reservadas;}
 {white} {/*Ignore*/}
 "//".* {/*Ignore*/}
+"\n" {lexeme=yytext(); return Linha;}
 "=" {lexeme=yytext(); return Igual;}
 "+" {lexeme=yytext(); return Soma;}
 "-" {lexeme=yytext(); return Subtracao;}
