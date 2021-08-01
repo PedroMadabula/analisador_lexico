@@ -4,7 +4,7 @@ import java.io.File;
 
 public class Principal {
     public static void main(String[] args) {
-        String lexer = "E:/GitHub Projects/analisador_lexico/AnalizadorLexico/src/codigo/Lexer.flex";
+        String lexer = "./src/codigo/Lexer.flex";
         gerarLexer(lexer);
     }
     public static void gerarLexer(String ruta){
