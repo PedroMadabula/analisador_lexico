@@ -10,7 +10,7 @@ package codigo;
  * @author Charly Ponce
  */
 public enum Tokens {
-    Reservadas,
+    Reservada,
     Linha,
     Igual,
     Soma,
@@ -19,5 +19,12 @@ public enum Tokens {
     Divisao,
     Identificador,
     Numero,
-    ERRO
+    Separador,
+    ERRO,
+    Op_Logico,
+    Op_Comparacao,
+    Op_Atribuicao,
+    Incremento,
+    Decremento,
+    Resto,
 }

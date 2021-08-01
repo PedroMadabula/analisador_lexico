@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package codigo;
 
 import java.io.BufferedReader;
@@ -34,6 +29,8 @@ public class AnaLex extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtEntrada = new javax.swing.JTextArea();
+        btnLimpar2 = new javax.swing.JButton();
+        btnLimpar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +59,22 @@ public class AnaLex extends javax.swing.JFrame {
         txtEntrada.setRows(5);
         jScrollPane2.setViewportView(txtEntrada);
 
+        btnLimpar2.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        btnLimpar2.setText("Limpar");
+        btnLimpar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpar2ActionPerformed(evt);
+            }
+        });
+
+        btnLimpar1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        btnLimpar1.setText("Limpar");
+        btnLimpar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,11 +86,16 @@ public class AnaLex extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(btnAnalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnAnalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLimpar1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(49, 49, 49)
+                        .addComponent(btnLimpar2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -90,11 +108,12 @@ public class AnaLex extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel2)
                 .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAnalizar)
-                        .addComponent(jLabel1)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAnalizar)
+                    .addComponent(jLabel1)
+                    .addComponent(btnLimpar2)
+                    .addComponent(btnLimpar1)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
@@ -107,17 +126,12 @@ public class AnaLex extends javax.swing.JFrame {
 
     private void btnAnalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalizarActionPerformed
         // TODO add your handling code here:
-        String lines[]; int contLinha=0;
+        String lines[]; int contLinha=1;
         File arquivo = new File("codigo.txt");
         PrintWriter escrever;
         try {
             escrever = new PrintWriter(arquivo);
             escrever.print(txtEntrada.getText());
-            lines = txtEntrada.getText().split("\\n");
-            for(int i = 0; i < lines.length; i++) {
-                //escrever.print(lines[i]);
-                //escrever.print("\n");
-            }
             escrever.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AnaLex.class.getName()).log(Level.SEVERE, null, ex);
@@ -142,7 +156,7 @@ public class AnaLex extends javax.swing.JFrame {
                     case ERRO:
                         resultado += "Linha: " + contLinha + "<Símbolo não definido>\n";
                         break;
-                    case Identificador: case Numero: case Reservadas:
+                    case Identificador: case Numero: case Reservada:
                         resultado += "Linha: " + contLinha + ", < " + tokens + " >, " + lexer.lexeme + "\n";
                         break;
                     default:
@@ -156,6 +170,16 @@ public class AnaLex extends javax.swing.JFrame {
             Logger.getLogger(AnaLex.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAnalizarActionPerformed
+
+    private void btnLimpar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpar2ActionPerformed
+        // TODO add your handling code here:
+        txtResultado.setText("");
+    }//GEN-LAST:event_btnLimpar2ActionPerformed
+
+    private void btnLimpar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpar1ActionPerformed
+        // TODO add your handling code here:
+        txtEntrada.setText("");
+    }//GEN-LAST:event_btnLimpar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,6 +221,8 @@ public class AnaLex extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnalizar;
+    private javax.swing.JButton btnLimpar1;
+    private javax.swing.JButton btnLimpar2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -8,7 +8,7 @@ public class Principal {
         gerarLexer(lexer);
     }
     public static void gerarLexer(String ruta){
-        File archivo = new File(ruta);
-        JFlex.Main.generate(archivo);
+        File arquivo = new File(ruta);
+        JFlex.Main.generate(arquivo);
     }
 }
