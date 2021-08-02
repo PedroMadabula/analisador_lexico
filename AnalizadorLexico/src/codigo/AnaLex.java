@@ -132,7 +132,7 @@ public class AnaLex extends javax.swing.JFrame {
         try {
             escrever = new PrintWriter(arquivo);
             //lowerCase += txtEntrada.getText();
-            escrever.print(txtEntrada.getText().toLowerCase());
+            escrever.print(txtEntrada.getText());
             escrever.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AnaLex.class.getName()).log(Level.SEVERE, null, ex);
