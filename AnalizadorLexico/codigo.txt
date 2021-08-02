@@ -1,1 +1,4 @@
-if
+public static void main(string[] arg) {
+  int i=0;
+}
+asasasa

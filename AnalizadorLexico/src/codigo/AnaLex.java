@@ -126,12 +126,13 @@ public class AnaLex extends javax.swing.JFrame {
 
     private void btnAnalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalizarActionPerformed
         // TODO add your handling code here:
-        String lines[]; int contLinha=1;
+        int contLinha=1;
         File arquivo = new File("codigo.txt");
         PrintWriter escrever;
         try {
             escrever = new PrintWriter(arquivo);
-            escrever.print(txtEntrada.getText());
+            //lowerCase += txtEntrada.getText();
+            escrever.print(txtEntrada.getText().toLowerCase());
             escrever.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AnaLex.class.getName()).log(Level.SEVERE, null, ex);
